@@ -1,10 +1,8 @@
 import React from 'react';
 import API from '../API';
-import Films from './Films';
 
-const PersonCard = ({ person }) => {
+const Films = () => {
   const [films, setFilms] = React.useState([]);
-  console.log(person);
 
   // React.useEffect(() => {
   //   person?.films?.map((film) =>
@@ -15,7 +13,9 @@ const PersonCard = ({ person }) => {
   //   );
   // }, [person?.films]);
 
-  const listFilms = () => person?.films?.map((film) => API.getFilms(film));
+  React.useEffect(() => {
+    API.getFilmList(films).then((res) => setFilms(res));
+  });
 
   // const getFilmList = (films) => {
   //   const allFilms = films.map((films) => {
@@ -25,18 +25,14 @@ const PersonCard = ({ person }) => {
   //   return Promise.all(allFilms);
   // };
 
-  // const renderFilms = () => {
-  //   return films?.map((f) => <li key={f.title}>{f.title}</li>);
-  // };
+  const renderFilms = () => {
+    return films?.map((film) => <li key={film.title}>{film.title}</li>);
+  };
 
   return (
     <div>
-      <div>
-        <h3>{person.name}</h3>
-        <h4>{person.height}</h4>
-      </div>
-      <Films listFilms={listFilms} />
+      <ul>{renderFilms()}</ul>
     </div>
   );
 };
-export default PersonCard;
+export default Films;

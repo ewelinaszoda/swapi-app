@@ -13,4 +13,12 @@ const getFilms = (url) => {
     .catch((error) => console.error(error));
 };
 
-export default { getAllPeople, getFilms };
+const getFilmList = (films) => {
+  const allFilms = films.map((films) => {
+    return fetch(films).then((response) => response.json());
+  });
+
+  return Promise.all(allFilms);
+};
+
+export default { getAllPeople, getFilms, getFilmList };
