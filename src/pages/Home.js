@@ -2,7 +2,7 @@ import React from 'react';
 import API from '../API';
 import PeopleContainer from '../containers/PeopleContainer.js';
 
-const PeoplePage = () => {
+const Home = () => {
   const [people, setPeople] = React.useState([]);
 
   React.useEffect(() => {
@@ -25,4 +25,4 @@ const PeoplePage = () => {
   );
 };
 
-export default PeoplePage;
+export default Home;
